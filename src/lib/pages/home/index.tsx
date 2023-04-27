@@ -82,7 +82,7 @@ const Home = () => {
       console.log("address: ", address);
       if (!address) throw Error("can not send! address is empty");
       let pubkeyInfo = await axios.get(
-        `http://127.0.0.1:9001/api/v1/getAccountInfo/BNB/${address}`
+        `https://pioneers.dev/api/v1/getAccountInfo/BNB/${address}`
       );
       // eslint-disable-next-line no-console
       console.log("pubkeyInfo: ", pubkeyInfo.data);
@@ -231,7 +231,7 @@ const Home = () => {
       setAddress(responseAddress.address);
 
       const resp = await axios.get(
-        `http://127.0.0.1:9001/api/v1/getPubkeyBalance/BNB/${responseAddress.address}`
+        `https://pioneers.dev/api/v1/getPubkeyBalance/BNB/${responseAddress.address}`
       );
       const balanceRemote = resp.data;
       // eslint-disable-next-line no-console
