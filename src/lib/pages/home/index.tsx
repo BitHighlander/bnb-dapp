@@ -204,7 +204,7 @@ const Home = () => {
     try {
       const apiKey = localStorage.getItem("apiKey");
       configKeepKey.apiKey = apiKey;
-
+      localStorage.setItem("chakra-ui-color-mode","dark");
       // init
       let sdk;
       try {
