@@ -17,6 +17,7 @@ import {
   ChakraProvider,
   extendTheme,
   Box,
+  Tooltip,
   Text,
   VStack,
   Grid,
@@ -27,6 +28,8 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
+  Card,
+  CardBody,
   ModalCloseButton,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -204,7 +207,7 @@ const Home = () => {
     try {
       const apiKey = localStorage.getItem("apiKey");
       configKeepKey.apiKey = apiKey;
-      localStorage.setItem("chakra-ui-color-mode","dark");
+      localStorage.setItem("chakra-ui-color-mode", "dark");
       // init
       let sdk;
       try {
@@ -348,12 +351,41 @@ const Home = () => {
         {isLoading ? (
           <div>loading...</div>
         ) : (
-          <div>
+          <Box border="1px solid black" p="4">
             <Logo h="40vmin" pointerEvents="none" />
-            <Text>address: {address}</Text>
-            <Text>balance: {balance}</Text>
-            <Button onClick={onOpen}>Send BNB</Button>
-          </div>
+            <Card>
+              <CardBody>
+                <Text>
+                  Address:{" "}
+                  <Tooltip label="This is YOUR address. use it to receive BNB native">
+                    <Text as="span" color="gray.500" textDecoration="underline">
+                      {address}
+                    </Text>
+                  </Tooltip>
+                </Text>
+                <Text>
+                  <Text as="em" color="blanchedalmond">
+                    <a href={`https://explorer.bnbchain.org/address/${address}`}>
+                      (view your Transaction History)
+                    </a>
+                  </Text>
+                </Text>
+              </CardBody>
+            </Card>
+            <br />
+            <Card>
+              <CardBody>
+                <Text>
+                  Balance:{" "}
+                  <Text as="bold" fontSize='xl' color='green'>
+                    {balance} (BNB)
+                  </Text>
+                </Text>
+                <br />
+                <Button onClick={onOpen}>Send BNB</Button>
+              </CardBody>
+            </Card>
+          </Box>
         )}
       </VStack>
     </Grid>
